@@ -3,12 +3,16 @@ import { useEffect, useState } from 'react';
 export default function Home() {
   const [users, setUsers] = useState([]);
 
-  useEffect(() => {
-    fetch(`${process.env.NEXT_PUBLIC_API_URL}/users`)
-      .then((res) => res.json())
-      .then(setUsers)
-      .catch((err) => console.error('Error fetching users:', err));
-  }, []);
+useEffect(() => {
+  fetch(`${process.env.NEXT_PUBLIC_API_URL}/users`)
+    .then((res) => res.json())
+    .then((data) => {
+      console.log("Datos recibidos:", data);
+      setUsers(data);
+    })
+    .catch((err) => console.error('Error fetching users:', err));
+}, []);
+
 
   return (
     <main>
